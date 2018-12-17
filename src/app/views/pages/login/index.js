@@ -1,10 +1,25 @@
 import {
   compose,
-  withStateHandlers
+  withStateHandlers,
+  withHandlers
 } from 'recompose'
-import login from './login'
+import { connect } from 'react-redux'
+import { login, logout } from '../../../redux/ducks/session/actions'
+import Login from './Login'
+
+const mapStateToProps = state => {
+  const { session } = { ...state }
+  console.log(session)
+  return { session }
+}
+
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch(login()),
+  logout: () => dispatch(logout())
+})
 
 const enhance = compose(
+  connect(mapStateToProps, mapDispatchToProps),
   withStateHandlers(
     {
       username: '',
@@ -13,13 +28,15 @@ const enhance = compose(
     {
       handleChange: () => e => ({
         [e.target.name]: e.target.value
-      }),
-      handleSubmit: ({ username, password }) => e => {
-        e.preventDefault()
-        console.log(username, password)
-      }
+      })
     },
-  )
+  ),
+  withHandlers({
+    handleSubmit: ({ username, password, login }) => e => {
+      e.preventDefault()
+      login()
+    }
+  })
 )
 
-export default enhance(login)
+export default enhance(Login)

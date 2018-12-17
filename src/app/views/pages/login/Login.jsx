@@ -1,22 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Form, Label } from './styles'
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.8rem;
-`
-
-const Input = styled.input`
-`
-
-const login = ({ email, password, handleChange, handleSubmit }) => {
+const Login = ({ username, password, handleChange, handleSubmit }) => {
   return (
     <div>
       <h1>Login</h1>
@@ -24,11 +9,11 @@ const login = ({ email, password, handleChange, handleSubmit }) => {
       <Form onSubmit={handleSubmit}>
         <Label htmlFor='username'>
           Username
-          <Input
+          <input
             id='username'
             name='username'
             type='text'
-            value={email}
+            value={username}
             onChange={handleChange}
             required
           />
@@ -36,7 +21,7 @@ const login = ({ email, password, handleChange, handleSubmit }) => {
 
         <Label htmlFor='password'>
           Password
-          <Input
+          <input
             id='password'
             name='password'
             type='password'
@@ -46,11 +31,11 @@ const login = ({ email, password, handleChange, handleSubmit }) => {
           />
         </Label>
 
-        <input type='submit' value='Submit'/>
+        <input type='submit' value='Submit' />
       </Form>
 
     </div>
   )
 }
 
-export default login
+export default Login
