@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Link, Route } from 'react-router-dom'
+import routes from '../../routes'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        Hi from App
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div>
+    <header>
+      <Link to='/'>Main page</Link>
+    </header>
+
+    {routes.map(route => (
+      <Route key={route.path} {...route} />
+    ))}
+  </div>
+)
 
 export default App
