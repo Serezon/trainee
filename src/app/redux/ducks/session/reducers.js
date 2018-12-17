@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import * as types from './types'
-import { createReducer } from '../../utils'
+import { handleAction, handleActions } from 'redux-actions'
 
 /*  State shape
 
@@ -9,14 +9,21 @@ import { createReducer } from '../../utils'
 
 */
 
-const authReducer = createReducer(false)({
-  [types.LOGIN]: () => true,
-  [types.LOGOUT]: () => false,
-})
+const authReducer = handleActions(
+  {
+    [types.LOGIN]: () => true,
+    [types.LOGOUT]: () => false,
+  },
+  { isAuthenticated: false }
+)
 
-const redirectAfterLoginReducer = createReducer(null)({
-  [types.SET_REDIRECT_AFTER_LOGIN]: (state, action) => action.payload.redirectUrl,
-})
+const redirectAfterLoginReducer = handleAction(
+  types.SET_REDIRECT_AFTER_LOGIN,
+  (state, action) => ({
+    [types.SET_REDIRECT_AFTER_LOGIN]: action.payload.redirectUrl
+  }),
+  ''
+)
 
 export default combineReducers({
   isAuthenticated: authReducer,
