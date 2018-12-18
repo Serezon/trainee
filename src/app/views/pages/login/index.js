@@ -4,7 +4,7 @@ import {
   withHandlers
 } from 'recompose'
 import { connect } from 'react-redux'
-import { login, logout } from '../../../redux/ducks/session/actions'
+import { loginUser } from '../../../redux/ducks/session/actions'
 import Login from './Login'
 
 const mapStateToProps = state => {
@@ -14,8 +14,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login()),
-  logout: () => dispatch(logout())
+  login: (username, password) => dispatch(loginUser(username, password))
 })
 
 const enhance = compose(
@@ -34,7 +33,7 @@ const enhance = compose(
   withHandlers({
     handleSubmit: ({ username, password, login }) => e => {
       e.preventDefault()
-      login()
+      login(username, password)
     }
   })
 )
