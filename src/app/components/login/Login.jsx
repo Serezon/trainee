@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Form, Label } from './styles'
+import './styles.sass'
 
 const Login = ({
   username,
@@ -16,8 +16,8 @@ const Login = ({
   return (
     <div>
       <h1>Login</h1>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="username">
+      <form onSubmit={handleSubmit} className="login__form">
+        <label htmlFor="username" className="login__label">
           Username
           <input
             id="username"
@@ -27,9 +27,9 @@ const Login = ({
             onChange={handleChange}
             required
           />
-        </Label>
+        </label>
 
-        <Label htmlFor="password">
+        <label htmlFor="password" className="login__label">
           Password
           <input
             id="password"
@@ -39,10 +39,10 @@ const Login = ({
             onChange={handleChange}
             required
           />
-        </Label>
+        </label>
 
         <input type="submit" value="Submit" />
-      </Form>
+      </form>
 
     </div>
   )
