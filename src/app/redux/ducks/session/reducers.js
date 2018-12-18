@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux'
 import * as types from './types'
-import { handleAction, handleActions } from 'redux-actions'
+import { handleActions } from 'redux-actions'
 
 /*  State shape
 
@@ -9,16 +8,8 @@ import { handleAction, handleActions } from 'redux-actions'
   redirectAfterLogin: string,
   error: bool,
   message: string
-*/
 
-// const fetchingReducer = handleActions(
-//   {
-//     [types.LOGIN]: () => true,
-//     [types.LOGIN_COMPLETED]: () => false,
-//     [types.LOGIN_FAILED]: () => false
-//   },
-//   { isFetching: false }
-// )
+*/
 
 const authReducer = handleActions(
   {
@@ -53,17 +44,4 @@ const authReducer = handleActions(
   }
 )
 
-// const redirectAfterLoginReducer = handleAction(
-//   types.SET_REDIRECT_AFTER_LOGIN,
-//   (state, action) => ({
-//     [types.SET_REDIRECT_AFTER_LOGIN]: action.payload.redirectUrl
-//   }),
-//   ''
-// )
-
 export default authReducer
-// combineReducers({
-//   isFetching: fetchingReducer,
-//   auth: authReducer
-//   // redirectAfterLogin: redirectAfterLoginReducer
-// })

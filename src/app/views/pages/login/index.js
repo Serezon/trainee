@@ -3,8 +3,9 @@ import {
   withStateHandlers,
   withHandlers
 } from 'recompose'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loginUser } from '../../../redux/ducks/session/actions'
+import { loginUser } from '../../../redux/ducks/session/operations'
 import Login from './Login'
 
 const mapStateToProps = state => {
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
   withStateHandlers(
     {
       username: '',
@@ -31,7 +33,7 @@ const enhance = compose(
     },
   ),
   withHandlers({
-    handleSubmit: ({ username, password, login }) => e => {
+    handleSubmit: ({ username, password, login, session, history }) => e => {
       e.preventDefault()
       login(username, password)
     }

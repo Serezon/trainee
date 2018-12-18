@@ -1,17 +1,17 @@
 import React from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import routes from '../../routes'
+import Header from './Header'
 
-const App = () => (
+const App = ({ logout }) => (
   <div>
-    <header>
-      <Link to='/'>Main page</Link>
-    </header>
+    <Header />
 
     {routes.map(route => (
       <Route key={route.path} {...route} />
     ))}
   </div>
 )
+
 
 export default App
