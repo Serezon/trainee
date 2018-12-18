@@ -1,5 +1,5 @@
-import * as types from './types'
 import { createAction } from 'redux-actions'
+import * as types from './types'
 
 export const login = createAction(types.LOGIN)
 

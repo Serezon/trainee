@@ -1,19 +1,19 @@
-import { Login } from '../views/pages'
-import { withAuthentication } from '../views/enhancers'
-import React from 'react'
+import { Login } from '../components'
+// import { withAuthentication } from '../utils/enhancers'
+import Numi from '../components/numi/Numi'
 
 const routes = [
   {
     path: '/',
-    component: withAuthentication(() => <h1>Home</h1>),
-    exact: true
+    // component: withAuthentication(Numi),
+    component: Numi,
+    exact: true,
   },
   {
     path: '/login',
     component: Login,
-    exact: true
+    exact: true,
   },
-
 ]
 
 export default routes

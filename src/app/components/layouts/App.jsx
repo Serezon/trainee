@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import routes from '../../routes'
 import Header from './Header'
 
-const App = ({ logout }) => (
+const App = () => (
   <div>
     <Header />
 
@@ -12,6 +12,5 @@ const App = ({ logout }) => (
     ))}
   </div>
 )
-
 
 export default App

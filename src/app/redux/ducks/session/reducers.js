@@ -1,5 +1,5 @@
-import * as types from './types'
 import { handleActions } from 'redux-actions'
+import * as types from './types'
 
 /*  State shape
 
@@ -13,35 +13,35 @@ import { handleActions } from 'redux-actions'
 
 const authReducer = handleActions(
   {
-    [types.LOGIN]: (state, action) => ({
+    [types.LOGIN]: state => ({
       ...state,
       isFetching: true,
       error: false,
-      message: ''
+      message: '',
     }),
-    [types.LOGIN_COMPLETED]: (state, action) => ({
+    [types.LOGIN_COMPLETED]: state => ({
       ...state,
       isAuthenticated: true,
-      isFetching: false
+      isFetching: false,
     }),
     [types.LOGIN_FAILED]: (state, action) => ({
       ...state,
       isFetching: false,
       error: true,
-      message: action.payload.error
+      message: action.payload.error,
     }),
-    [types.LOGOUT]: (state, action) => ({
+    [types.LOGOUT]: state => ({
       ...state,
-      isAuthenticated: false
-    })
+      isAuthenticated: false,
+    }),
   },
   {
     isFetching: false,
     isAuthenticated: false,
     redirectAfterLogin: '',
     error: false,
-    message: ''
-  }
+    message: '',
+  },
 )
 
 export default authReducer
