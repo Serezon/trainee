@@ -36,7 +36,6 @@ const enhance = compose(
       if (event.key === 'Enter') {
         const { value } = event.target
         setPrevious(value)
-        setCalcValue('')
 
         const result = Calculator(value, dispatch, numi)
 
@@ -46,6 +45,7 @@ const enhance = compose(
           dispatch(send(result))
           setResult(result)
         }
+        setCalcValue('')
       }
     },
   }),
