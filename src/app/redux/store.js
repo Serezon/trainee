@@ -9,6 +9,10 @@ export default function configureStore(initialState = {
     isAuthenticated: false,
     redirectAfterLogin: '',
   },
+  numi: {
+    values: [],
+    variables: {},
+  },
 }) {
   const rootReducer = combineReducers(reducers)
   // eslint-disable-next-line

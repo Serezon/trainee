@@ -1,6 +1,6 @@
 import { Login } from '../components'
 // import { withAuthentication } from '../utils/enhancers'
-import Numi from '../components/numi/Numi'
+import Numi from '../components/numi'
 
 const routes = [
   {

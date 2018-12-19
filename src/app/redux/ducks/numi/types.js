@@ -1,0 +1,5 @@
+export const SEND = 'numi/SEND'
+export const ADD_VARIABLE = 'numi/ADD_VARIABLE'
+export const CHANGE_VARIABLE = 'numi/CHANGE_VARIABLE'
+export const SUCCESS = 'numi/SUCCESS'
+export const FAIL = 'numi/FAIL'
