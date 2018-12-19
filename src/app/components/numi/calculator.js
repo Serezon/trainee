@@ -1,20 +1,25 @@
-import { addVariable } from '../../redux/ducks/numi/operations'
+import { addVariable, changeVariable } from '../../redux/ducks/numi/operations'
 import { Variable, isError } from './modules'
 
-function Calculator(exp, dispatch) {
-  if (exp.indexOf(':') !== -1) {
-    const result = Variable(exp)
+function Calculator(exp, dispatch, numi) {
+  if (exp.indexOf(':') !== -1 || exp.indexOf('=') !== -1) {
+    const result = Variable(exp, numi)
 
-    if (!isError(result)) {
-      // console.log('Is ERROR?', result)
+    if (!isError(result) && result.creating) {
       dispatch(addVariable(result))
       return result.value
     }
-    // console.log('ERROR: ', result)
+    if (!isError(result) && !result.creating) {
+      dispatch(changeVariable(result))
+      return result.value
+    }
+
     return result
   }
 
-  return exp
+  return {
+    error: 'Operations were not recognized',
+  }
 }
 
 export default Calculator

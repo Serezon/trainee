@@ -5,10 +5,12 @@ const Numi = ({
   onChange,
   calcValue,
   result,
+  previous,
   calculate,
   /* eslint-disable react/jsx-indent, indent */
 }) => (
     <div className="numi">
+      <span className="numi_previous">{previous}</span>
       <textarea
         className="numi__input-area"
         value={calcValue}

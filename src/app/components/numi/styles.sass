@@ -1,6 +1,7 @@
 .numi
   width: 60vw
   height: 50vh
+  min-height: 12rem
   margin: 10vh auto
   background-color: #04202c
   padding: 2.5rem 2rem
@@ -20,14 +21,25 @@
   resize: none
 
 .numi__result
-  display: inline-block
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 2.5rem
   width: 100%
   border-top: 1px solid #5b7065
-  padding-top: 1em
   font-family: 'Noto Sans Mono', sans-serif
   font-weight: normal
   font-size: 1.2em
-  line-height: 100%
   opacity: 0.5
   color: #c9d1c8
-  text-align: center
+  //text-align: center
+
+.numi_previous
+  display: inline-flex
+  justify-content: flex-end
+  width: 100%
+  font-family: 'Noto Sans Mono', sans-serif
+  font-weight: normal
+  font-size: 1.2em
+  opacity: 0.5
+  color: #c9d1c8
