@@ -14,6 +14,13 @@ const numiReducer = handleActions(
         [action.payload.name]: action.payload.value,
       },
     }),
+    [types.CHANGE_VARIABLE]: (state, action) => ({
+      ...state,
+      variables: {
+        ...state.variables,
+        [action.payload.name]: action.payload.value,
+      },
+    }),
   },
   {
     values: [],
