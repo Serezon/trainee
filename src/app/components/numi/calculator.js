@@ -1,5 +1,10 @@
 import { addVariable, changeVariable } from '../../redux/ducks/numi/operations'
-import { Variable, isError } from './modules'
+import {
+  Variable,
+  Logic,
+  isError,
+  handleError,
+} from './modules'
 
 function Calculator(expression, dispatch, numi) {
   let exp = expression.replace(/\s/g, '')
@@ -11,9 +16,35 @@ function Calculator(expression, dispatch, numi) {
     const summary = Array.prototype.reduce.call(values, ((sum, current) => sum + current))
 
     exp = exp.replace(/#prev/g, previous)
-    // console.log(exp)
     exp = exp.replace(/#sum/g, summary)
-    // console.log(exp)
+  }
+
+  const variablesNames = Object.keys(numi.variables)
+  const variablesRegExp = () => {
+    let partRegExp = variablesNames.map(variable => `${variable}|`).join('')
+    partRegExp = partRegExp.slice(0, partRegExp.length - 1)
+
+    const regExp = `/(${partRegExp})/`
+    console.log(regExp)
+    return new RegExp(regExp)
+  }
+
+  const variablesCheck = variablesRegExp()
+  if (exp.search(variablesCheck) !== -1) {
+    console.log('I DID IT')
+    return handleError('Test RegExp')
+  }
+
+  const operations = /(\+|-|\*|\/|plus|and|with|minus|subtract|without|times|multipliedby|mul|divideby|divide|\(|\))/g
+
+  if (exp.search(operations) !== -1) {
+    const result = Logic(exp)
+
+    if (!isError(result)) {
+      return result.value
+    }
+
+    return result
   }
 
   // Creating or assignment
@@ -32,9 +63,7 @@ function Calculator(expression, dispatch, numi) {
     return result
   }
 
-  return {
-    error: 'Operations were not recognized',
-  }
+  return handleError()
 }
 
 export default Calculator
