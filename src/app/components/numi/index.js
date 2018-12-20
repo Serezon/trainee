@@ -22,8 +22,6 @@ const enhance = compose(
     onChange: ({ setCalcValue }) => (event) => {
       event.preventDefault()
       const { value } = event.target
-
-      console.log('From Numi comp:', value)
       setCalcValue(value)
     },
     calculate: ({

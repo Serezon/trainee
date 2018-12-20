@@ -2,24 +2,22 @@ import { addVariable, changeVariable } from '../../redux/ducks/numi/operations'
 import { Variable, isError } from './modules'
 
 function Calculator(expression, dispatch, numi) {
-  let exp = expression
+  let exp = expression.replace(/\s/g, '')
 
-  if (exp.indexOf('prev') !== -1 || exp.indexOf('sum') !== -1) {
+  // Previous value and summary
+  if (exp.search(/#prev/) !== -1 || exp.search(/#sum/) !== -1) {
     const values = [...numi.values]
+    const previous = values[values.length - 1]
     const summary = Array.prototype.reduce.call(values, ((sum, current) => sum + current))
 
-    while (exp.indexOf('prev') !== -1) {
-      const currentIndex = exp.indexOf('prev')
-      exp = exp.slice(0, currentIndex) + values[values.length - 1] + exp.slice(currentIndex + 5)
-    }
-
-    while (exp.indexOf('sum') !== -1) {
-      const currentIndex = exp.indexOf('sum')
-      exp = exp.slice(0, currentIndex) + summary + exp.slice(currentIndex + 5)
-    }
+    exp = exp.replace(/#prev/g, previous)
+    // console.log(exp)
+    exp = exp.replace(/#sum/g, summary)
+    // console.log(exp)
   }
 
-  if (exp.indexOf(':') !== -1 || exp.indexOf('=') !== -1) {
+  // Creating or assignment
+  if (exp.search(/:/) !== -1 || exp.search(/=/) !== -1) {
     const result = Variable(exp, numi)
 
     if (!isError(result) && result.creating) {
