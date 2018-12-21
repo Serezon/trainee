@@ -4,17 +4,20 @@ import {
   withHandlers,
 } from 'recompose'
 import { connect } from 'react-redux'
+
 import Numi from './Numi'
-import Calculator from './calculator'
-import { send } from '../../redux/ducks/numi/operations'
-import { isError } from './modules'
+import { numiOperations } from '../../redux/ducks/numi'
+
+const mapDispatchToProps = ({
+  calculateExpression: numiOperations.calculator,
+})
 
 const mapStateToProps = ({ numi }) => ({
   numi,
 })
 
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   withState('calcValue', 'setCalcValue', ''),
   withState('result', 'setResult', 0),
   withState('previous', 'setPrevious', 0),
@@ -28,21 +31,15 @@ const enhance = compose(
       setResult,
       setCalcValue,
       setPrevious,
-      dispatch,
-      numi,
+      calculateExpression,
     }) => (event) => {
       if (event.key === 'Enter') {
         const { value } = event.target
         setPrevious(value)
 
-        const result = Calculator(value, dispatch, numi)
+        const result = calculateExpression(value)
 
-        if (isError(result)) {
-          setResult(result.error)
-        } else {
-          dispatch(send(result))
-          setResult(result)
-        }
+        setResult(result)
         setCalcValue('')
       }
     },

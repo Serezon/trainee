@@ -4,6 +4,7 @@ import {
   withHandlers,
 } from 'recompose'
 import { connect } from 'react-redux'
+
 import { loginUser } from '../../redux/ducks/session/operations'
 import Login from './Login'
 

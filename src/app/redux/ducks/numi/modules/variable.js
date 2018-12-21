@@ -1,6 +1,6 @@
 import { handleError } from './error'
 
-function Variable(exp, { variables }) {
+function Variable(exp, { variables }, calculate) {
   let index = exp.search(/:/)
   let creating = true // creating or reassignment
   if (index === -1) {
@@ -18,8 +18,9 @@ function Variable(exp, { variables }) {
     return handleError('Variable not exists')
   }
 
-  const value = parseFloat(exp.slice(index + 1))
+  const value = parseFloat(calculate(exp.slice(index + 1), null, variables, true))
   if (typeof value !== 'number' || Number.isNaN(parseFloat(value))) {
+    console.log(typeof value)
     return handleError('Variable value is incorrect')
   }
 

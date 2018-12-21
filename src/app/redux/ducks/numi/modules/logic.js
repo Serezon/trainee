@@ -5,13 +5,13 @@ function Logic(expression) {
   let exp = expression
   // Replacing operations
 
-  exp = exp.replace(/(plus|and|with)/g, '+')
-    .replace(/(minus|subtract|without)/g, '-')
-    .replace(/(times|multipliedby|mul)/g, '*')
-    .replace(/(divideby|divide)/g, '/')
-
   const result = mexp.eval(exp)
-  console.log(result)
+
+  if (!result && result !== 0) {
+    return {
+      error: 'Calculation error',
+    }
+  }
 
   return {
     value: result,
