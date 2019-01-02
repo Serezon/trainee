@@ -4,6 +4,7 @@ import {
   Calculate,
   isError,
   handleError,
+  // ConvertUnits,
 } from './modules'
 
 const calculator = expression => (dispatch, getState) => {
@@ -19,6 +20,10 @@ const calculator = expression => (dispatch, getState) => {
     exp = exp.replace(/#prev/g, previous)
     exp = exp.replace(/#sum/g, summary)
   }
+  // Unit conversion
+  // if (exp.search(/\d+(USD|EUR|UAH|RUB)(into|as|in|to)(USD|EUR|UAH|RUB)/) !== -1) {
+  //   exp = ConvertUnits(exp)
+  // }
 
   // Creating or assignment
   if (exp.search(/:/) !== -1 || exp.search(/=/) !== -1) {

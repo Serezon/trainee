@@ -6,7 +6,7 @@ import { logout } from '../../redux/ducks/session/operations'
 
 const Header = ({ isAuthenticated }) => (
   <header>
-    <Link to="/">Main page </Link>
+    <Link to="/">Main page</Link>
     {isAuthenticated ? <Button logout={logout} /> : null}
   </header>
 )

@@ -20,7 +20,6 @@ function Variable(exp, { variables }, calculate) {
 
   const value = parseFloat(calculate(exp.slice(index + 1), null, variables, true))
   if (typeof value !== 'number' || Number.isNaN(parseFloat(value))) {
-    console.log(typeof value)
     return handleError('Variable value is incorrect')
   }
 

@@ -11,6 +11,14 @@ import * as types from './types'
 
 */
 
+export const initialState = {
+  isFetching: false,
+  isAuthenticated: false,
+  redirectAfterLogin: '',
+  error: false,
+  message: '',
+}
+
 const authReducer = handleActions(
   {
     [types.LOGIN]: state => ({
@@ -35,13 +43,7 @@ const authReducer = handleActions(
       isAuthenticated: false,
     }),
   },
-  {
-    isFetching: false,
-    isAuthenticated: false,
-    redirectAfterLogin: '',
-    error: false,
-    message: '',
-  },
+  initialState,
 )
 
 export default authReducer
